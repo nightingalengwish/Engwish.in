@@ -27,7 +27,7 @@ export const Navbar = () => {
   };
 
   return (
-    <header data-testid="main-navbar" className="fixed top-0 inset-x-0 z-50 bg-black/60 backdrop-blur-2xl border-b border-[#FF0033]/20">
+    <header data-testid="main-navbar" className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-2xl border-b border-[#FF0033]/15 shadow-[0_2px_20px_rgba(255,0,51,0.06)]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
         <Logo />
         <nav className="hidden md:flex items-center gap-8">
@@ -36,7 +36,7 @@ export const Navbar = () => {
               key={l.to}
               data-testid={`nav-${l.to}`}
               onClick={() => goTo(l.to)}
-              className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200 relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-[#FF0033] hover:after:w-full after:transition-all after:duration-300"
+              className="text-sm font-medium text-neutral-600 hover:text-[#E60023] transition-colors duration-200 relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-[#FF0033] hover:after:w-full after:transition-all after:duration-300"
             >
               {l.label}
             </button>
@@ -51,14 +51,14 @@ export const Navbar = () => {
             <Phone size={15} /> {PHONE}
           </a>
         </div>
-        <button data-testid="mobile-menu-btn" className="md:hidden text-white" onClick={() => setOpen(!open)}>
+        <button data-testid="mobile-menu-btn" className="md:hidden text-neutral-900" onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
         </button>
       </div>
       {open && (
-        <div data-testid="mobile-menu" className="md:hidden bg-black/95 backdrop-blur-2xl border-t border-[#FF0033]/20 px-6 py-6 flex flex-col gap-4">
+        <div data-testid="mobile-menu" className="md:hidden bg-white/95 backdrop-blur-2xl border-t border-[#FF0033]/15 px-6 py-6 flex flex-col gap-4">
           {LINKS.map((l) => (
-            <button key={l.to} onClick={() => goTo(l.to)} className="text-left text-white/80 hover:text-white font-medium py-1">
+            <button key={l.to} onClick={() => goTo(l.to)} className="text-left text-neutral-700 hover:text-[#E60023] font-medium py-1">
               {l.label}
             </button>
           ))}

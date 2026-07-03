@@ -10,13 +10,13 @@ import { FloatingObjects } from "./FloatingObjects";
 
 export const Hero = () => (
   <section id="home" data-testid="hero-section" className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-28 pb-16">
-    <div className="absolute inset-0 bg-[#050505]" />
-    <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,0,51,0.25), transparent 60%), radial-gradient(ellipse 60% 40% at 90% 100%, rgba(255,0,51,0.12), transparent 60%)" }} />
+    <div className="absolute inset-0 bg-white" />
+    <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,0,51,0.12), transparent 60%), radial-gradient(ellipse 60% 40% at 90% 100%, rgba(255,0,51,0.07), transparent 60%)" }} />
     <FloatingObjects />
 
     <div className="relative max-w-7xl mx-auto px-6 lg:px-8 w-full text-center">
       <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#FF0033]/40 bg-[#FF0033]/10 px-5 py-2 text-xs font-semibold tracking-widest text-[#FF6680] uppercase backdrop-blur-md">
+        <span className="inline-flex items-center gap-2 rounded-full border border-[#FF0033]/30 bg-[#FF0033]/[0.07] px-5 py-2 text-xs font-semibold tracking-widest text-[#E60023] uppercase backdrop-blur-md">
           <Sparkles size={14} /> Hyderabad's Premier Skills Institute
         </span>
       </motion.div>
@@ -25,10 +25,10 @@ export const Hero = () => (
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.15 }}
-        className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white mt-8 leading-[1.05]"
+        className="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-neutral-900 mt-8 leading-[1.05]"
       >
         Speak Bold.{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF0033] via-[#FF3355] to-[#FF6680] drop-shadow-[0_0_30px_rgba(255,0,51,0.5)]">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E60023] via-[#FF0033] to-[#FF3355] drop-shadow-[0_0_25px_rgba(255,0,51,0.25)]">
           Score High.
         </span>
         <br /> Go Global.
@@ -38,7 +38,7 @@ export const Hero = () => (
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="text-white/60 text-base md:text-lg max-w-2xl mx-auto mt-6"
+        className="text-neutral-500 text-base md:text-lg max-w-2xl mx-auto mt-6"
       >
         From fluent English and IELTS band scores to studying abroad and acing your Intermediate boards —
         Engwish Skills Academy builds the skills that shape your future.
@@ -60,7 +60,7 @@ export const Hero = () => (
         <button
           data-testid="hero-enquire-btn"
           onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-          className="rounded-full px-8 py-4 font-bold text-white border border-white/25 bg-white/5 backdrop-blur-xl hover:bg-white/10 hover:scale-105 transition-all duration-300"
+          className="rounded-full px-8 py-4 font-bold text-neutral-900 border border-[#FF0033]/30 bg-white shadow-sm hover:bg-[#FF0033]/5 hover:scale-105 transition-all duration-300"
         >
           Enquire Now
         </button>

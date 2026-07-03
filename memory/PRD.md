@@ -11,7 +11,10 @@ Build a website for Engwish Skills Academy (www.engwish.in), located at Bandlagu
 ## Architecture
 - FastAPI backend (port 8001, /api prefix) + MongoDB (enquiries collection)
 - React frontend: react-router, framer-motion animations, Swiper 3D coverflow slider, Tailwind + shadcn, sonner toasts
-- Fonts: Clash Display (headings) + Outfit (body); dark glossy red glassmorphism theme (#FF0033 / #050505)
+- Fonts: Chakra Petch italic (headings — matches angular Engwish logotype) + Outfit (body); red & white theme (#FF0033 on white, soft #FFF7F8 alternating sections). Actual logo wordmark image (/logo-wordmark.png cropped from client PDF) used in navbar/footer.
+
+## Change Log
+- June 2026: Restyled from dark glossy theme → red & white per user request; swapped Clash Display → Chakra Petch (brand font match); navbar/footer now use real logo wordmark from PDF.
 
 ## Implemented (June 2026)
 - Backend: POST /api/enquiries, GET /api/enquiries

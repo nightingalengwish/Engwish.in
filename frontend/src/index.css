@@ -1,5 +1,4 @@
-@import url("https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -8,37 +7,38 @@
 body {
     margin: 0;
     font-family: "Outfit", sans-serif;
-    background-color: #050505;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #171717;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
 }
 
 .font-heading {
-    font-family: "Clash Display", "Outfit", sans-serif;
+    font-family: "Chakra Petch", "Outfit", sans-serif;
+    font-style: italic;
 }
 
 @layer base {
     :root {
-        --background: 0 0% 2%;
-        --foreground: 0 0% 98%;
-        --card: 0 0% 4%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 4%;
-        --popover-foreground: 0 0% 98%;
+        --background: 0 0% 100%;
+        --foreground: 0 0% 9%;
+        --card: 0 0% 100%;
+        --card-foreground: 0 0% 9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 0 0% 9%;
         --primary: 348 100% 50%;
         --primary-foreground: 0 0% 98%;
-        --secondary: 0 0% 10%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 10%;
-        --muted-foreground: 0 0% 63%;
+        --secondary: 0 0% 96%;
+        --secondary-foreground: 0 0% 9%;
+        --muted: 0 0% 96%;
+        --muted-foreground: 0 0% 40%;
         --accent: 348 100% 50%;
         --accent-foreground: 0 0% 98%;
         --destructive: 0 84.2% 60.2%;
         --destructive-foreground: 0 0% 98%;
-        --border: 348 100% 50% / 0.2;
-        --input: 0 0% 15%;
+        --border: 348 100% 50% / 0.15;
+        --input: 0 0% 90%;
         --ring: 348 100% 50%;
         --radius: 1rem;
     }

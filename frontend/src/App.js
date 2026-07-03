@@ -9,7 +9,7 @@ import CourseDetail from "./pages/CourseDetail";
 
 function App() {
   return (
-    <div className="App bg-[#050505] min-h-screen text-left">
+    <div className="App bg-white min-h-screen text-left">
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -18,7 +18,7 @@ function App() {
         </Routes>
         <Footer />
         <WhatsAppButton />
-        <Toaster position="top-center" richColors theme="dark" />
+        <Toaster position="top-center" richColors theme="light" />
       </BrowserRouter>
     </div>
   );

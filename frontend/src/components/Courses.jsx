@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { COURSES } from "../data/courses";
 
 export const Courses = () => (
-  <section id="courses" data-testid="courses-section" className="relative py-24 sm:py-32 bg-[#050505]">
+  <section id="courses" data-testid="courses-section" className="relative py-24 sm:py-32 bg-[#FFF7F8]">
     <div className="max-w-7xl mx-auto px-6 lg:px-8">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -12,9 +12,9 @@ export const Courses = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <span className="text-[#FF0033] text-xs font-bold tracking-[0.3em] uppercase">Our Programs</span>
-        <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-white mt-4 max-w-2xl">
-          Four Paths. <span className="text-[#FF0033]">One Destination</span> — Success.
+        <span className="text-[#E60023] text-xs font-bold tracking-[0.3em] uppercase">Our Programs</span>
+        <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-neutral-900 mt-4 max-w-2xl">
+          Four Paths. <span className="text-[#E60023]">One Destination</span> — Success.
         </h2>
       </motion.div>
 
@@ -30,30 +30,30 @@ export const Courses = () => (
             <Link
               to={`/course/${c.slug}`}
               data-testid={`course-card-${c.slug}`}
-              className="group block relative rounded-3xl overflow-hidden bg-gradient-to-br from-red-950/40 to-black/90 backdrop-blur-2xl border border-[#FF0033]/25 hover:border-[#FF0033]/70 hover:shadow-[0_8px_50px_rgba(255,0,51,0.25)] transition-all duration-500 h-full"
+              className="group block relative rounded-3xl overflow-hidden bg-white border border-[#FF0033]/15 hover:border-[#FF0033]/50 shadow-[0_4px_25px_rgba(0,0,0,0.05)] hover:shadow-[0_12px_45px_rgba(255,0,51,0.15)] hover:-translate-y-1 transition-all duration-500 h-full"
             >
               <div className="h-52 overflow-hidden relative">
                 <img src={c.image} alt={c.title} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0304] to-transparent" />
-                <div className="absolute top-4 right-4 rounded-full bg-black/60 backdrop-blur-md border border-[#FF0033]/40 px-3 py-1 text-[11px] font-bold text-[#FF6680]">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                <div className="absolute top-4 right-4 rounded-full bg-white/90 backdrop-blur-md border border-[#FF0033]/30 px-3 py-1 text-[11px] font-bold text-[#E60023]">
                   {c.tag}
                 </div>
               </div>
               <div className="p-8 pt-4">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-2xl bg-[#FF0033]/15 border border-[#FF0033]/30 flex items-center justify-center shrink-0">
-                      <c.icon className="text-[#FF3355]" size={22} />
+                    <div className="h-12 w-12 rounded-2xl bg-[#FF0033]/10 border border-[#FF0033]/25 flex items-center justify-center shrink-0">
+                      <c.icon className="text-[#E60023]" size={22} />
                     </div>
-                    <h3 className="font-heading text-xl font-bold text-white leading-snug">{c.title}</h3>
+                    <h3 className="font-heading text-xl font-bold text-neutral-900 leading-snug">{c.title}</h3>
                   </div>
-                  <ArrowUpRight className="text-white/30 group-hover:text-[#FF0033] group-hover:rotate-45 transition-all duration-300 shrink-0 mt-1" />
+                  <ArrowUpRight className="text-neutral-300 group-hover:text-[#FF0033] group-hover:rotate-45 transition-all duration-300 shrink-0 mt-1" />
                 </div>
-                <p className="text-white/55 text-sm leading-relaxed mt-4">{c.short}</p>
+                <p className="text-neutral-500 text-sm leading-relaxed mt-4">{c.short}</p>
                 {(c.countries || c.subjects) && (
                   <div className="flex flex-wrap gap-2 mt-5">
                     {(c.countries || c.subjects).map((x) => (
-                      <span key={x} className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-medium text-white/70">
+                      <span key={x} className="rounded-full border border-[#FF0033]/20 bg-[#FFF0F2] px-3 py-1 text-[11px] font-medium text-neutral-700">
                         {x}
                       </span>
                     ))}

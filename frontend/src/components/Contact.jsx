@@ -32,38 +32,38 @@ export const Contact = () => {
   };
 
   const inputCls =
-    "w-full rounded-2xl bg-white/5 border border-white/15 focus:border-[#FF0033]/70 focus:ring-2 focus:ring-[#FF0033]/20 outline-none px-5 py-3.5 text-white placeholder-white/35 text-sm transition-all duration-300 backdrop-blur-xl";
+    "w-full rounded-2xl bg-white border border-neutral-200 focus:border-[#FF0033]/60 focus:ring-2 focus:ring-[#FF0033]/15 outline-none px-5 py-3.5 text-neutral-900 placeholder-neutral-400 text-sm transition-all duration-300";
 
   return (
     <section id="contact" data-testid="contact-section" className="relative py-24 sm:py-32 overflow-hidden">
-      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 80% 40%, rgba(255,0,51,0.12), #050505 70%)" }} />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 80% 40%, rgba(255,0,51,0.07), #ffffff 70%)" }} />
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16">
         <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-          <span className="text-[#FF0033] text-xs font-bold tracking-[0.3em] uppercase">Get In Touch</span>
-          <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-white mt-4">
-            Start Your Journey <span className="text-[#FF0033]">Today</span>
+          <span className="text-[#E60023] text-xs font-bold tracking-[0.3em] uppercase">Get In Touch</span>
+          <h2 className="font-heading text-4xl sm:text-5xl font-bold tracking-tight text-neutral-900 mt-4">
+            Start Your Journey <span className="text-[#E60023]">Today</span>
           </h2>
-          <p className="text-white/60 leading-relaxed mt-6">
+          <p className="text-neutral-500 leading-relaxed mt-6">
             Walk in for a free counselling session or drop us an enquiry — our advisors will design the perfect
             program roadmap for you.
           </p>
           <div className="space-y-5 mt-10">
             <a data-testid="contact-phone" href={`tel:${PHONE.replace(/\s/g, "")}`} className="flex items-center gap-4 group">
-              <div className="h-12 w-12 rounded-2xl bg-[#FF0033]/15 border border-[#FF0033]/30 flex items-center justify-center group-hover:bg-[#FF0033]/30 transition-colors">
-                <Phone className="text-[#FF3355]" size={20} />
+              <div className="h-12 w-12 rounded-2xl bg-[#FF0033]/10 border border-[#FF0033]/25 flex items-center justify-center group-hover:bg-[#FF0033]/20 transition-colors">
+                <Phone className="text-[#E60023]" size={20} />
               </div>
               <div>
-                <div className="text-white/50 text-xs uppercase tracking-wider">Call Us</div>
-                <div className="text-white font-semibold">{PHONE}</div>
+                <div className="text-neutral-400 text-xs uppercase tracking-wider">Call Us</div>
+                <div className="text-neutral-900 font-semibold">{PHONE}</div>
               </div>
             </a>
             <div data-testid="contact-address" className="flex items-center gap-4">
-              <div className="h-12 w-12 rounded-2xl bg-[#FF0033]/15 border border-[#FF0033]/30 flex items-center justify-center shrink-0">
-                <MapPin className="text-[#FF3355]" size={20} />
+              <div className="h-12 w-12 rounded-2xl bg-[#FF0033]/10 border border-[#FF0033]/25 flex items-center justify-center shrink-0">
+                <MapPin className="text-[#E60023]" size={20} />
               </div>
               <div>
-                <div className="text-white/50 text-xs uppercase tracking-wider">Visit Us</div>
-                <div className="text-white font-semibold">{ADDRESS}</div>
+                <div className="text-neutral-400 text-xs uppercase tracking-wider">Visit Us</div>
+                <div className="text-neutral-900 font-semibold">{ADDRESS}</div>
               </div>
             </div>
           </div>
@@ -76,14 +76,14 @@ export const Contact = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="rounded-3xl p-8 bg-gradient-to-br from-red-950/40 to-black/85 backdrop-blur-2xl border border-[#FF0033]/25 space-y-4"
+          className="rounded-3xl p-8 bg-white border border-[#FF0033]/15 shadow-[0_10px_50px_rgba(255,0,51,0.08)] space-y-4"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <input data-testid="enquiry-name-input" className={inputCls} placeholder="Your Name *" value={form.name} onChange={set("name")} />
             <input data-testid="enquiry-phone-input" className={inputCls} placeholder="Phone Number *" value={form.phone} onChange={set("phone")} />
           </div>
           <input data-testid="enquiry-email-input" className={inputCls} type="email" placeholder="Email (optional)" value={form.email} onChange={set("email")} />
-          <select data-testid="enquiry-course-select" className={`${inputCls} appearance-none cursor-pointer [&>option]:bg-black`} value={form.course} onChange={set("course")}>
+          <select data-testid="enquiry-course-select" className={`${inputCls} appearance-none cursor-pointer [&>option]:bg-white`} value={form.course} onChange={set("course")}>
             <option value="">Course of Interest *</option>
             {COURSES.map((c) => (
               <option key={c.slug} value={c.title}>{c.title}</option>

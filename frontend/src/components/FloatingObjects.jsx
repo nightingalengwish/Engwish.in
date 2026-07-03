@@ -26,7 +26,7 @@ export const FloatingObjects = () => (
           <div className="w-full h-full rounded-full" style={{ background: "radial-gradient(circle at 30% 30%, rgba(255,0,51,0.5), rgba(255,0,51,0.05))", filter: "blur(1px)" }} />
         )}
         {o.type === "cube" && (
-          <div className="w-full h-full border border-white/15 rounded-xl backdrop-blur-sm bg-white/[0.03]" style={{ transform: "rotate(15deg)" }} />
+          <div className="w-full h-full border border-[#FF0033]/20 rounded-xl backdrop-blur-sm bg-[#FF0033]/[0.04]" style={{ transform: "rotate(15deg)" }} />
         )}
       </motion.div>
     ))}
