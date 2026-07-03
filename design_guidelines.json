@@ -1,0 +1,82 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Luxury)",
+  "mood": "Exciting, smooth, glossy, premium, high-energy",
+  "colors": {
+    "background": "#050505",
+    "surface": "rgba(255, 0, 51, 0.05)",
+    "surface_glass": "rgba(20, 0, 5, 0.6)",
+    "primary": "#FF0033",
+    "primary_glow": "rgba(255, 0, 51, 0.5)",
+    "text_main": "#FFFFFF",
+    "text_muted": "#A0A0A0",
+    "border": "rgba(255, 0, 51, 0.2)"
+  },
+  "typography": {
+    "headings_font": "Clash Display",
+    "body_font": "Outfit",
+    "scale": {
+      "h1": "text-5xl sm:text-6xl tracking-tighter font-bold",
+      "h2": "text-4xl sm:text-5xl tracking-tight font-bold",
+      "h3": "text-2xl sm:text-3xl font-semibold",
+      "body": "text-base leading-relaxed"
+    }
+  },
+  "layout_spacing": {
+    "container": "max-w-7xl mx-auto px-6 lg:px-8",
+    "section_gap": "py-24 sm:py-32",
+    "card_padding": "p-8",
+    "border_radius": "rounded-3xl"
+  },
+  "components": {
+    "buttons": "Glossy red buttons. bg-gradient-to-r from-[#FF0033] to-[#99001f] text-white rounded-full px-8 py-4 font-bold tracking-wide shadow-[0_0_20px_rgba(255,0,51,0.5)] hover:shadow-[0_0_40px_rgba(255,0,51,0.8)] hover:scale-105 transition-all duration-300 border border-white/20",
+    "cards": "Glossy red glassmorphism. bg-gradient-to-br from-red-900/30 to-black/80 backdrop-blur-2xl border border-red-500/30 hover:border-red-500/60 hover:shadow-[0_8px_32px_rgba(255,0,51,0.2)] transition-all duration-500 rounded-3xl p-8 relative overflow-hidden",
+    "navigation": "Ultra-blur sticky header. bg-black/60 backdrop-blur-3xl border-b border-red-500/20",
+    "animations": "Use framer-motion for smooth staggered reveals, floating 3D objects in background, and Swiper.js for the 3D coverflow slider."
+  },
+  "images": [
+    {
+      "category": "hero_background",
+      "url": "https://images.unsplash.com/photo-1708533548050-16703eff12ec",
+      "description": "Abstract glossy red and black waves"
+    },
+    {
+      "category": "course_spoken_english",
+      "url": "https://images.unsplash.com/photo-1758270704587-43339a801396",
+      "description": "Male professor lecturing"
+    },
+    {
+      "category": "course_study_abroad",
+      "url": "https://images.pexels.com/photos/19554793/pexels-photo-19554793.jpeg",
+      "description": "Historic university building"
+    },
+    {
+      "category": "course_ielts",
+      "url": "https://images.unsplash.com/photo-1584601218757-8a412705aaa6",
+      "description": "Exam papers on desk"
+    },
+    {
+      "category": "course_academic",
+      "url": "https://images.unsplash.com/photo-1635372722656-389f87a941b7",
+      "description": "Blackboard with physics and math equations"
+    }
+  ],
+  "brand": {
+    "name": "Engwish",
+    "tagline": "SKILLS ACADEMY",
+    "address": "Bandlaguda, Chandrayangutta, Hyderabad 500005",
+    "phone": "+91 9000060601",
+    "logo_instructions": "Create a React component for the logo: A circular div (w-12 h-12) split horizontally (top half #FF0033, bottom half #000000) containing a stylized white 'E'. Beside it, text 'ENGWISH' in uppercase bold sans-serif, with 'SKILLS ACADEMY' below it, separated by a thin red line."
+  },
+  "instructions_to_main_agent": [
+    "Strictly implement a 'dark mode only' glossy red glassmorphism aesthetic.",
+    "CRITICAL: Do NOT use any pictures of females. Do NOT use flags of any country. Rely entirely on the provided image URLs.",
+    "Implement a 3D slider for showcasing features/courses in the hero or about section (e.g., Swiper with effect='coverflow').",
+    "Add 'exploring objects' floating animations for abstract 3D elements (use framer-motion to animate floating spheres/shapes).",
+    "Build a persistent floating WhatsApp click-to-chat button (bottom right).",
+    "Create the Hero, About, 4 Courses, Testimonials, and Contact sections on the main page, PLUS separate detail pages for the 4 courses.",
+    "Ensure all interactive elements have `data-testid` attributes (e.g., data-testid='whatsapp-button').",
+    "Ensure typography uses Clash Display for headings and Outfit for body (install via Google Fonts).",
+    "Use lucide-react for all icons."
+  ]
+}
