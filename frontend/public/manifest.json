@@ -1,0 +1,16 @@
+{
+  "short_name": "Engwish",
+  "name": "Engwish Skills Academy",
+  "description": "Spoken English, IELTS & Duolingo prep, Study Abroad consulting and Intermediate coaching in Hyderabad.",
+  "icons": [
+    {
+      "src": "logo-icon.png",
+      "sizes": "639x639",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FF0033",
+  "background_color": "#ffffff"
+}

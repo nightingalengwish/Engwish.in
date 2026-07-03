@@ -36,8 +36,12 @@ export const Footer = () => (
         </div>
       </div>
     </div>
-    <div className="border-t border-[#FF0033]/10 py-6 text-center text-neutral-400 text-xs">
-      © {new Date().getFullYear()} Engwish Skills Academy. All rights reserved. · www.engwish.in
+    <div className="border-t border-[#FF0033]/10 py-6 px-6 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-neutral-400 text-xs">
+      <span>© {new Date().getFullYear()} Engwish Skills Academy. All rights reserved. · www.engwish.in</span>
+      <span className="flex items-center gap-4">
+        <Link to="/privacy" data-testid="footer-privacy-link" className="hover:text-[#E60023] transition-colors">Privacy Policy</Link>
+        <Link to="/terms" data-testid="footer-terms-link" className="hover:text-[#E60023] transition-colors">Terms of Service</Link>
+      </span>
     </div>
   </footer>
 );

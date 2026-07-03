@@ -2,8 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "sonner";
-import { MapPin, Phone, Send, Loader2 } from "lucide-react";
-import { COURSES, PHONE, ADDRESS } from "../data/courses";
+import { MapPin, Phone, Send, Loader2, Navigation } from "lucide-react";
+import { COURSES, PHONE, ADDRESS, MAPS_URL, MAPS_EMBED } from "../data/courses";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -101,6 +101,34 @@ export const Contact = () => {
           </button>
         </motion.form>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7 }}
+        className="relative max-w-7xl mx-auto px-6 lg:px-8 mt-16"
+      >
+        <div data-testid="google-map-card" className="rounded-3xl overflow-hidden border border-[#FF0033]/15 shadow-[0_10px_50px_rgba(255,0,51,0.08)] relative">
+          <iframe
+            title="Engwish Skills Academy Location"
+            src={MAPS_EMBED}
+            className="w-full h-[380px] border-0"
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+          <a
+            data-testid="get-directions-btn"
+            href={MAPS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="absolute bottom-5 right-5 flex items-center gap-2 bg-gradient-to-r from-[#FF0033] to-[#99001f] text-white rounded-full px-6 py-3 text-sm font-bold shadow-[0_4px_25px_rgba(255,0,51,0.4)] hover:scale-105 transition-transform duration-300"
+          >
+            <Navigation size={15} /> Get Directions
+          </a>
+        </div>
+      </motion.div>
     </section>
   );
 };
