@@ -17,6 +17,7 @@ Build a website for Engwish Skills Academy (www.engwish.in), located at Bandlagu
 - June 2026: Restyled from dark glossy theme → red & white per user request; swapped Clash Display → Chakra Petch (brand font match); navbar/footer now use real logo wordmark from PDF.
 - June 2026 (v3 launch-ready): 4 AI-generated course images (Indian-American conversation, blue-sky university, exam PCs with IELTS/duolingo badges, Indian maths teacher premium class); Google Maps embed (17.3210917,78.4671568) + Get Directions (https://maps.app.goo.gl/y5FzbgJhBJJsUe2d6); full address updated everywhere; SEO pack: title/meta/OG/Twitter/canonical/JSON-LD EducationalOrganization schema, robots.txt, sitemap.xml (www.engwish.in), manifest.json, favicon from logo; Privacy Policy (/privacy) & Terms (/terms) pages linked in footer.
 - June 2026 (v4): Removed logo showcase section; navbar logo now a glossy 3D glass-ball that spins on scroll (framer-motion useScroll); added EMAIL=info@engwish.in to Contact, Footer and JSON-LD schema.
+- June 2026 (v5): Navbar logo — removed ball border/background (full logo shown), spin changed to 3D rotateY (left-to-right), mapped to full-page scrollYProgress (0→1440°) so it spins until the page bottom.
 
 ## Implemented (June 2026)
 - Backend: POST /api/enquiries, GET /api/enquiries
