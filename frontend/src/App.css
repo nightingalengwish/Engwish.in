@@ -1,34 +1,46 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+.App {
+  min-height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+.hero-swiper {
+  padding: 30px 0 50px;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.hero-swiper .swiper-slide {
+  transition: transform 0.4s ease;
 }
 
-.App-link {
-    color: #61dafb;
+.hero-swiper .swiper-slide-shadow-left,
+.hero-swiper .swiper-slide-shadow-right {
+  border-radius: 24px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7), transparent);
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+::selection {
+  background: rgba(255, 0, 51, 0.4);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#ff0033, #99001f);
+  border-radius: 6px;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    box-shadow: 0 4px 25px rgba(37, 211, 102, 0.5);
+  }
+  50% {
+    box-shadow: 0 4px 40px rgba(37, 211, 102, 0.85);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2.5s ease-in-out infinite;
 }

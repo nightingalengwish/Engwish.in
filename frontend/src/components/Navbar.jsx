@@ -1,0 +1,72 @@
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Menu, X, Phone } from "lucide-react";
+import { Logo } from "./Logo";
+import { PHONE } from "../data/courses";
+
+const LINKS = [
+  { label: "Home", to: "home" },
+  { label: "Courses", to: "courses" },
+  { label: "About", to: "about" },
+  { label: "Testimonials", to: "testimonials" },
+  { label: "Contact", to: "contact" },
+];
+
+export const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const goTo = (id) => {
+    setOpen(false);
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: id } });
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <header data-testid="main-navbar" className="fixed top-0 inset-x-0 z-50 bg-black/60 backdrop-blur-2xl border-b border-[#FF0033]/20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+        <Logo />
+        <nav className="hidden md:flex items-center gap-8">
+          {LINKS.map((l) => (
+            <button
+              key={l.to}
+              data-testid={`nav-${l.to}`}
+              onClick={() => goTo(l.to)}
+              className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-200 relative after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-0 after:bg-[#FF0033] hover:after:w-full after:transition-all after:duration-300"
+            >
+              {l.label}
+            </button>
+          ))}
+        </nav>
+        <div className="hidden md:flex items-center gap-4">
+          <a
+            data-testid="nav-call-btn"
+            href={`tel:${PHONE.replace(/\s/g, "")}`}
+            className="flex items-center gap-2 bg-gradient-to-r from-[#FF0033] to-[#99001f] text-white rounded-full px-6 py-2.5 text-sm font-bold shadow-[0_0_20px_rgba(255,0,51,0.4)] hover:shadow-[0_0_35px_rgba(255,0,51,0.7)] hover:scale-105 transition-all duration-300 border border-white/20"
+          >
+            <Phone size={15} /> {PHONE}
+          </a>
+        </div>
+        <button data-testid="mobile-menu-btn" className="md:hidden text-white" onClick={() => setOpen(!open)}>
+          {open ? <X /> : <Menu />}
+        </button>
+      </div>
+      {open && (
+        <div data-testid="mobile-menu" className="md:hidden bg-black/95 backdrop-blur-2xl border-t border-[#FF0033]/20 px-6 py-6 flex flex-col gap-4">
+          {LINKS.map((l) => (
+            <button key={l.to} onClick={() => goTo(l.to)} className="text-left text-white/80 hover:text-white font-medium py-1">
+              {l.label}
+            </button>
+          ))}
+          <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="flex items-center gap-2 text-[#FF0033] font-bold">
+            <Phone size={16} /> {PHONE}
+          </a>
+        </div>
+      )}
+    </header>
+  );
+};
