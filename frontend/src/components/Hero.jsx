@@ -85,8 +85,8 @@ export const Hero = () => (
         coverflowEffect={{ rotate: 35, stretch: 0, depth: 220, modifier: 1, slideShadows: true }}
         className="hero-swiper"
       >
-        {COURSES.map((c) => (
-          <SwiperSlide key={c.slug} style={{ width: "320px" }}>
+        {[...COURSES, ...COURSES].map((c, i) => (
+          <SwiperSlide key={`${c.slug}-${i}`} style={{ width: "320px" }}>
             <Link to={`/course/${c.slug}`} data-testid={`slider-card-${c.slug}`}>
               <div className="relative h-[400px] rounded-3xl overflow-hidden border border-[#FF0033]/30 group">
                 <img src={c.image} alt={c.title} className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
