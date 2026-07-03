@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { Phone, MapPin } from "lucide-react";
+import { Phone, MapPin, Mail } from "lucide-react";
 import { Logo } from "./Logo";
-import { COURSES, PHONE, ADDRESS } from "../data/courses";
+import { COURSES, PHONE, ADDRESS, EMAIL } from "../data/courses";
 
 export const Footer = () => (
   <footer data-testid="main-footer" className="relative bg-[#FFF7F8] border-t border-[#FF0033]/15">
@@ -29,6 +29,9 @@ export const Footer = () => (
         <div className="space-y-4 text-sm">
           <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="flex items-center gap-3 text-neutral-500 hover:text-neutral-900 transition-colors">
             <Phone size={16} className="text-[#FF0033]" /> {PHONE}
+          </a>
+          <a href={`mailto:${EMAIL}`} data-testid="footer-email-link" className="flex items-center gap-3 text-neutral-500 hover:text-neutral-900 transition-colors">
+            <Mail size={16} className="text-[#FF0033]" /> {EMAIL}
           </a>
           <div className="flex items-start gap-3 text-neutral-500">
             <MapPin size={16} className="text-[#FF0033] mt-0.5 shrink-0" /> {ADDRESS}

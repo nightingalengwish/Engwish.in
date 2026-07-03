@@ -92,6 +92,7 @@ export const COURSES = [
 
 export const PHONE = "+91 9000060601";
 export const PHONE_RAW = "919000060601";
+export const EMAIL = "info@engwish.in";
 export const ADDRESS = "3rd Floor, Star Complex, Kings Avenue Colony, Opp. Bandlaguda PS, Bandlaguda, Chandrayangutta, Hyderabad, TS 500005";
 export const MAPS_URL = "https://maps.app.goo.gl/y5FzbgJhBJJsUe2d6";
 export const MAPS_EMBED = "https://www.google.com/maps?q=17.3210917,78.4671568&z=17&output=embed";

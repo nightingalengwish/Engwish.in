@@ -2,8 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "sonner";
-import { MapPin, Phone, Send, Loader2, Navigation } from "lucide-react";
-import { COURSES, PHONE, ADDRESS, MAPS_URL, MAPS_EMBED } from "../data/courses";
+import { MapPin, Phone, Send, Loader2, Navigation, Mail } from "lucide-react";
+import { COURSES, PHONE, ADDRESS, EMAIL, MAPS_URL, MAPS_EMBED } from "../data/courses";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -55,6 +55,15 @@ export const Contact = () => {
               <div>
                 <div className="text-neutral-400 text-xs uppercase tracking-wider">Call Us</div>
                 <div className="text-neutral-900 font-semibold">{PHONE}</div>
+              </div>
+            </a>
+            <a data-testid="contact-email" href={`mailto:${EMAIL}`} className="flex items-center gap-4 group">
+              <div className="h-12 w-12 rounded-2xl bg-[#FF0033]/10 border border-[#FF0033]/25 flex items-center justify-center group-hover:bg-[#FF0033]/20 transition-colors">
+                <Mail className="text-[#E60023]" size={20} />
+              </div>
+              <div>
+                <div className="text-neutral-400 text-xs uppercase tracking-wider">Email Us</div>
+                <div className="text-neutral-900 font-semibold">{EMAIL}</div>
               </div>
             </a>
             <div data-testid="contact-address" className="flex items-center gap-4">
