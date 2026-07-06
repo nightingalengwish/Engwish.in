@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Sparkles, LayoutDashboard } from "lucide-react";
 import { Logo } from "./Logo";
 import { PHONE } from "../data/courses";
+import { useAuth } from "../context/AuthContext";
 
 const LINKS = [
   { label: "Home", to: "home" },
@@ -16,6 +17,7 @@ export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const goTo = (id) => {
     setOpen(false);
@@ -41,8 +43,34 @@ export const Navbar = () => {
               {l.label}
             </button>
           ))}
+          <Link
+            data-testid="nav-ai-practice"
+            to="/ai-practice"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-1.5 text-sm font-bold text-[#E60023] hover:text-[#99001f] transition-colors duration-200"
+          >
+            <Sparkles size={14} /> AI Practice
+            <span className="rounded-full bg-[#FF0033] text-white text-[9px] font-bold px-1.5 py-0.5 tracking-wider uppercase">New</span>
+          </Link>
         </nav>
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3">
+          {user && user !== false ? (
+            <Link
+              data-testid="nav-dashboard-btn"
+              to="/dashboard"
+              className="flex items-center gap-2 rounded-full border-2 border-[#FF0033]/25 text-[#E60023] px-5 py-2 text-sm font-bold hover:bg-[#FF0033]/5 hover:border-[#FF0033]/50 transition-all duration-300"
+            >
+              <LayoutDashboard size={14} /> Dashboard
+            </Link>
+          ) : (
+            <Link
+              data-testid="nav-login-btn"
+              to="/auth"
+              className="rounded-full border-2 border-[#FF0033]/25 text-[#E60023] px-5 py-2 text-sm font-bold hover:bg-[#FF0033]/5 hover:border-[#FF0033]/50 transition-all duration-300"
+            >
+              Login
+            </Link>
+          )}
           <a
             data-testid="nav-call-btn"
             href={`tel:${PHONE.replace(/\s/g, "")}`}
@@ -62,6 +90,23 @@ export const Navbar = () => {
               {l.label}
             </button>
           ))}
+          <Link
+            data-testid="mobile-nav-ai-practice"
+            to="/ai-practice"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-1.5 text-[#E60023] font-bold py-1"
+          >
+            <Sparkles size={14} /> AI Practice
+            <span className="rounded-full bg-[#FF0033] text-white text-[9px] font-bold px-1.5 py-0.5 tracking-wider uppercase">New</span>
+          </Link>
+          <Link
+            data-testid="mobile-nav-auth-btn"
+            to={user && user !== false ? "/dashboard" : "/auth"}
+            onClick={() => setOpen(false)}
+            className="text-left text-neutral-700 hover:text-[#E60023] font-bold py-1"
+          >
+            {user && user !== false ? "My Dashboard" : "Login / Sign Up"}
+          </Link>
           <a href={`tel:${PHONE.replace(/\s/g, "")}`} className="flex items-center gap-2 text-[#FF0033] font-bold">
             <Phone size={16} /> {PHONE}
           </a>

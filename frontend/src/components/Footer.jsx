@@ -22,6 +22,11 @@ export const Footer = () => (
               </Link>
             </li>
           ))}
+          <li>
+            <Link to="/ai-practice" data-testid="footer-link-ai-practice" className="text-[#E60023] font-bold hover:text-[#99001f] text-sm transition-colors">
+              Engwish AI-Practice — Speak with AI
+            </Link>
+          </li>
         </ul>
       </div>
       <div>

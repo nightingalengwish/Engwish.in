@@ -1,0 +1,50 @@
+{
+  "summary": "Tested new Engwish AI-Practice feature: auth (register/login/me/logout/refresh/Google-session simulation), dashboard/stats, homepage 5th section, /ai-practice marketing page, and full E2E signup→dashboard→logout→re-login flow. Backend 18/19 tests pass. Frontend flows work end-to-end. One backend bug found: brute-force lockout bypassed with multi-replica deployment.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/auth/login",
+        "issue": "Brute-force lockout bypassable in multi-replica deployment. auth.py uses `request.client.host` (per-pod peer IP from ingress) in the lockout identifier. In this preview env there are >=2 backend pods (observed identifiers '10.201.2.130:...' and '10.201.1.4:...'). Since login_attempts is stored per (pod_ip:email), a load-balanced attacker can double their attempts without lockout. Fix: use only the email (or X-Forwarded-For / X-Real-IP from the ingress) as the identifier, not request.client.host.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Dashboard logout → home redirect",
+        "issue": "logout handler calls `navigate('/')` after logout, but Dashboard's own effect `if (user === false) navigate('/auth', { replace: true })` races and wins, so user lands on /auth instead of /. Minor UX inconsistency (functionally logout still succeeds). Fix: remove /auth redirect on unmount OR guard it, OR use `navigate('/', { replace: true })` synchronously before setUser(false).",
+        "selector": "dashboard-logout-btn",
+        "priority": "LOW"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/backend/tests/test_auth_dashboard.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix brute-force lockout identifier so it isn't per-pod (use email-only or a trusted X-Forwarded-For header).",
+    "Fix logout redirect race so post-logout lands on '/' as intended, not '/auth'."
+  ],
+  "critical_code_review_comments": [
+    "auth.py check_lockout+record_failure key on request.client.host which is not stable behind ingress with multiple replicas — bypasses brute-force protection.",
+    "Dashboard.jsx `useEffect(() => { if (user === false) navigate('/auth') }, [user])` conflicts with logout handler's navigate('/'). Consolidate the redirect logic.",
+    "Dashboard.jsx swallows /api/dashboard/stats errors with `.catch(() => {})` — user would sit on the spinner forever if the endpoint fails. Add an error state / retry.",
+    "auth.py public_user leaks phone even for Google users (fine here but ensure it's intentional)."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_auth_dashboard.py (new — auth + dashboard + Google session simulation)"
+  ],
+  "success_rate": { "backend": "94.7% (18/19)", "frontend": "~95% (all critical flows pass; one minor logout redirect race)" },
+  "test_credentials": "Ran E2E signup with disposable email (e2e_<ts>@engwishtest.com / Test@1234). Did NOT lock out testuser@engwish.in. Existing test user testuser@engwish.in / Test@1234 credentials verified in /app/memory/test_credentials.md.",
+  "seed_data_creation": "Google session simulation inserts users with prefix 'user_gtest*' and session_tokens 'test_session_*' into test_database.users / user_sessions. Cleaned up after test run.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "All frontend testids listed in the review request are present. Category cards on /ai-practice DO render (12 shown initially, expand to 20 via ai-categories-toggle) but they don't use `ai-category-card-<n>` testids — the toggle itself is verified working. Dashboard initial spinner can last 500-1500ms while /dashboard/stats resolves — waits should account for that. Brute-force test in test_auth_dashboard.py::test_login_brute_force_lockout is EXPECTED TO FAIL until the multi-replica bug is fixed; it correctly demonstrates the vulnerability.",
+  "rca of the issue": "test_login_brute_force_lockout failure — RCA: MongoDB login_attempts shows two records for the same throwaway email keyed by two different pod IPs (10.201.2.130 & 10.201.1.4), each with count < 5. Ingress load-balances requests across backend pods, and auth.check_lockout/record_failure uses `request.client.host` (the TCP peer, i.e. the ingress/kube-proxy hop that differs per replica) in the identifier. So each pod tracks attempts independently and neither reaches MAX_ATTEMPTS=5 before the test's 6-attempt budget. Repro: run pytest sequentially (`-n 0`) — 6 failed logins yield only 401 responses. Mitigation: change identifier to `email` alone, or extract the real client IP from `request.headers.get('X-Forwarded-For', '').split(',')[0]` / `X-Real-IP`."
+}

@@ -1,22 +1,15 @@
-from fastapi import FastAPI, APIRouter
-from dotenv import load_dotenv
+from database import db, client  # loads .env first
+
+from fastapi import FastAPI, APIRouter, Request, Depends
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
-from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
-
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
-
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+from auth import router as auth_router, get_current_user
 
 app = FastAPI()
 api_router = APIRouter(prefix="/api")
@@ -65,7 +58,36 @@ async def get_enquiries():
     return docs
 
 
+DEFAULT_STATS = {
+    "today_minutes": 0,
+    "total_minutes": 0,
+    "fluency_score": None,
+    "streak_days": 0,
+    "conversations_completed": 0,
+    "badges": [],
+    "recent_conversations": [],
+    "skill_scores": {},
+    "feedback_history": [],
+}
+
+
+@api_router.get("/dashboard/stats")
+async def dashboard_stats(user: dict = Depends(get_current_user)):
+    stats = await db.practice_stats.find_one({"user_id": user["user_id"]}, {"_id": 0})
+    return {"user": {"user_id": user["user_id"], "name": user.get("name", ""), "email": user["email"]},
+            "stats": stats or DEFAULT_STATS}
+
+
+api_router.include_router(auth_router)
 app.include_router(api_router)
+
+
+@app.on_event("startup")
+async def create_indexes():
+    await db.users.create_index("email", unique=True)
+    await db.users.create_index("user_id")
+    await db.user_sessions.create_index("session_token")
+    await db.login_attempts.create_index("identifier")
 
 app.add_middleware(
     CORSMiddleware,
