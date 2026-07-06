@@ -194,7 +194,9 @@ async def register(input: RegisterInput, response: Response):
 @router.post("/login")
 async def login(input: LoginInput, request: Request, response: Response):
     email = input.email.lower()
-    identifier = f"{request.client.host if request.client else 'unknown'}:{email}"
+    # Use real client IP from ingress (request.client.host differs per pod replica)
+    client_ip = request.headers.get("X-Forwarded-For", "").split(",")[0].strip() or request.headers.get("X-Real-IP", "") or "unknown"
+    identifier = f"{client_ip}:{email}"
     await check_lockout(identifier)
     user = await db.users.find_one({"email": email})
     if not user or not user.get("password_hash") or not verify_password(input.password, user["password_hash"]):

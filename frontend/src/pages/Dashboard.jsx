@@ -51,7 +51,13 @@ export default function Dashboard() {
     axios
       .get(`${API}/api/dashboard/stats`, { withCredentials: true })
       .then((res) => setData(res.data))
-      .catch(() => {});
+      .catch(() => {
+        toast.error("Could not load your practice stats. Showing defaults.");
+        setData({
+          user: {},
+          stats: { today_minutes: 0, total_minutes: 0, fluency_score: null, streak_days: 0, conversations_completed: 0, badges: [], recent_conversations: [], feedback_history: [] },
+        });
+      });
   }, [user]);
 
   if (user === null || (user && !data)) {
@@ -84,7 +90,7 @@ export default function Dashboard() {
           </div>
           <button
             data-testid="dashboard-logout-btn"
-            onClick={async () => { await logout(); navigate("/"); }}
+            onClick={async () => { navigate("/", { replace: true }); await logout(); }}
             className="inline-flex items-center gap-2 rounded-full border border-[#FF0033]/25 text-[#E60023] px-5 py-2.5 text-sm font-bold hover:bg-[#FF0033]/5 transition-all"
           >
             <LogOut size={15} /> Log Out

@@ -19,6 +19,7 @@ Build a website for Engwish Skills Academy (www.engwish.in), located at Bandlagu
 - June 2026 (v4): Removed logo showcase section; navbar logo now a glossy 3D glass-ball that spins on scroll (framer-motion useScroll); added EMAIL=info@engwish.in to Contact, Footer and JSON-LD schema.
 - June 2026 (v5): Navbar logo — removed ball border/background (full logo shown), spin changed to 3D rotateY (left-to-right), mapped to full-page scrollYProgress (0→1440°) so it spins until the page bottom.
 - June 2026 (v6): Rebuilt logo as a true 3D sphere (CSS globe technique: logo texture repeat-x slides horizontally with scroll + sphere shading/gloss overlays) so the ball stays fully round while spinning — never goes slim edge-on.
+- Feb 2026 (v7 — Engwish AI-Practice): Added flagship AI product. Homepage 5th section (red gradient teaser after Courses) + full marketing page /ai-practice (hero with live-conversation mockup, animated stat counters 6000+/500+/20+, 6 feature cards, 20-category grid with view-all toggle, real-time assessment dashboard mockup with circular gauges + progress bars, traditional-vs-AI comparison, 4-step how-it-works, gradient CTA). Full auth: JWT email/password (register name/email/phone/password, login, refresh, logout, brute-force lockout 5 fails/15min keyed on X-Forwarded-For ip:email) + Emergent Google Auth (session_id exchange → session_token cookie). Protected /dashboard: welcome, Continue Practice CTA (toast placeholder — live AI lab not wired yet), stat cards, recommended scenarios, achievement badges (locked states), empty-state recent conversations & feedback history. Navbar: AI Practice link w/ NEW badge + Login/Dashboard button. Footer + sitemap updated. Backend split: database.py, auth.py, server.py (GET /api/dashboard/stats). Tested: iteration_2 — backend 18/19 → both reported issues fixed & verified (brute force multi-replica bypass, logout redirect race).
 
 ## Implemented (June 2026)
 - Backend: POST /api/enquiries, GET /api/enquiries
@@ -29,9 +30,16 @@ Build a website for Engwish Skills Academy (www.engwish.in), located at Bandlagu
 - Testing: iteration_1 — backend 100%, frontend 100%
 
 ## Backlog
-- P1: Google Maps embed for location; enquiries admin view for staff
-- P2: SEO meta tags/OG images; email notification on new enquiry (needs Resend/SendGrid key); gallery section
-- P2: Rate limiting on enquiry endpoint (spam protection)
+- P0: Wire dashboard "Continue Practice" to the user's real AI Conversational Lab (built in another Emergent app) — need its deployed URL, OR rebuild live AI voice conversation inside this app (would need OpenAI Realtime/TTS-STT integration)
+- P0: Domain hookup — user owns www.engwish.in on GoDaddy; guide via Emergent Deploy → Custom Domain (DNS CNAME) after deployment
+- P1: Google Maps embed done; enquiries admin view for staff
+- P1: Email forwarding of leads to info@engwish.in (needs Resend/SendGrid key)
+- P2: OG images; rate limiting on enquiry endpoint (spam protection)
+
+## Auth (Feb 2026)
+- users: {user_id, name, email, phone, password_hash?, picture?, auth_provider, created_at}; user_sessions (Google), login_attempts (lockout)
+- Endpoints: /api/auth/{register,login,session,me,refresh,logout}, /api/dashboard/stats
+- Test creds in /app/memory/test_credentials.md; testing playbook /app/auth_testing.md
 
 ## Next Tasks
 - Gather real testimonials/stats from client (current numbers are placeholders)
