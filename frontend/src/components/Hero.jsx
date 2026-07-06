@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Autoplay } from "swiper/modules";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, Bot, Mic } from "lucide-react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import { COURSES } from "../data/courses";
@@ -87,18 +87,40 @@ export const Hero = () => (
       >
         {[...COURSES, ...COURSES].map((c, i) => (
           <SwiperSlide key={`${c.slug}-${i}`} style={{ width: "320px" }}>
-            <Link to={`/course/${c.slug}`} data-testid={`slider-card-${c.slug}`}>
+            <Link to={c.href || `/course/${c.slug}`} data-testid={`slider-card-${c.slug}`}>
               <div className="relative h-[400px] rounded-3xl overflow-hidden border border-[#FF0033]/30 group">
-                <img src={c.image} alt={c.title} className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                <div className="absolute top-4 left-4 rounded-full bg-[#FF0033] px-3 py-1 text-[11px] font-bold text-white shadow-[0_0_15px_rgba(255,0,51,0.6)]">
+                {c.variant === "ai" ? (
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#7a0019] via-[#b30026] to-[#FF0033]">
+                    <div className="absolute -top-16 -right-16 w-56 h-56 rounded-full bg-white/10 blur-3xl" />
+                    <div className="absolute -bottom-20 -left-10 w-64 h-64 rounded-full bg-white/8 blur-3xl" />
+                    <div className="relative h-full flex flex-col items-center justify-center px-6">
+                      <div className="w-20 h-20 rounded-2xl bg-white/15 backdrop-blur-xl border border-white/30 flex items-center justify-center shadow-[0_15px_40px_rgba(0,0,0,0.25)]">
+                        <Bot className="text-white" size={38} />
+                      </div>
+                      <div className="mt-5 flex items-center gap-1.5">
+                        {[14, 22, 10, 26, 18, 24, 12, 20, 16].map((h, k) => (
+                          <span key={k} className="w-1 rounded-full bg-white/70" style={{ height: h }} />
+                        ))}
+                      </div>
+                      <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/20 backdrop-blur border border-white/30 px-3 py-1 text-white text-[10px] font-bold tracking-widest uppercase">
+                        <Mic size={11} /> Live · AI Coach
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <img src={c.image} alt={c.title} className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+                  </>
+                )}
+                <div className={`absolute top-4 left-4 rounded-full px-3 py-1 text-[11px] font-bold shadow-[0_0_15px_rgba(255,0,51,0.6)] ${c.variant === "ai" ? "bg-white text-[#E60023]" : "bg-[#FF0033] text-white"}`}>
                   {c.tag}
                 </div>
                 <div className="absolute bottom-0 p-6">
-                  <c.icon className="text-[#FF3355] mb-3" size={28} />
+                  <c.icon className={c.variant === "ai" ? "text-white mb-3" : "text-[#FF3355] mb-3"} size={28} />
                   <h3 className="font-heading text-xl font-bold text-white leading-tight">{c.title}</h3>
-                  <span className="inline-flex items-center gap-1 text-[#FF6680] text-sm font-semibold mt-2">
-                    View Program <ArrowRight size={14} />
+                  <span className={`inline-flex items-center gap-1 text-sm font-semibold mt-2 ${c.variant === "ai" ? "text-white" : "text-[#FF6680]"}`}>
+                    {c.variant === "ai" ? "Enter AI Lab" : "View Program"} <ArrowRight size={14} />
                   </span>
                 </div>
               </div>

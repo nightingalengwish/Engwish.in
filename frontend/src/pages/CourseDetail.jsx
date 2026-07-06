@@ -12,7 +12,10 @@ export default function CourseDetail() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [slug]);
+    if (course?.href) {
+      navigate(course.href, { replace: true });
+    }
+  }, [slug, course, navigate]);
 
   if (!course) {
     return (

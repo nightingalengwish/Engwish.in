@@ -1,6 +1,28 @@
-import { Mic, Globe2, FileCheck2, GraduationCap } from "lucide-react";
+import { Mic, Globe2, FileCheck2, GraduationCap, Sparkles } from "lucide-react";
 
 export const COURSES = [
+  {
+    slug: "ai-practice",
+    href: "/ai-practice",
+    variant: "ai",
+    icon: Sparkles,
+    title: "Practice Live with AI — Guaranteed Fluency",
+    short: "Speak with an intelligent AI coach 24×7 across 500+ real-life scenarios. Unlimited practice, instant fluency scoring and personalized feedback — until fluency is guaranteed.",
+    tag: "Flagship · AI Powered",
+    highlights: [
+      "24×7 live conversations with the Engwish AI Coach",
+      "500+ real-life scenarios: interviews, travel, meetings & more",
+      "Real-time fluency, pronunciation & grammar scoring",
+      "Unlimited practice minutes — no batches, no waiting",
+      "Personal progress dashboard & weekly analytics",
+      "Guaranteed measurable fluency — or keep practising free",
+    ],
+    detail:
+      "Engwish AI-Practice is our flagship, AI-powered spoken English lab. Speak naturally with an intelligent coach that listens, responds and scores your fluency in real time — 24×7, from any device. Choose a scenario, start a live conversation, and watch your fluency score climb every week.",
+    duration: "Self-paced · Unlimited",
+    mode: "AI-Powered · Online",
+    batch: "Start Instantly",
+  },
   {
     slug: "spoken-english",
     icon: Mic,

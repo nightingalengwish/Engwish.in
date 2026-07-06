@@ -17,16 +17,15 @@ export const Footer = () => (
         <ul className="space-y-3">
           {COURSES.map((c) => (
             <li key={c.slug}>
-              <Link to={`/course/${c.slug}`} data-testid={`footer-link-${c.slug}`} className="text-neutral-500 hover:text-[#E60023] text-sm transition-colors">
+              <Link
+                to={c.href || `/course/${c.slug}`}
+                data-testid={`footer-link-${c.slug}`}
+                className={`text-sm transition-colors ${c.variant === "ai" ? "text-[#E60023] font-bold hover:text-[#99001f]" : "text-neutral-500 hover:text-[#E60023]"}`}
+              >
                 {c.title}
               </Link>
             </li>
           ))}
-          <li>
-            <Link to="/ai-practice" data-testid="footer-link-ai-practice" className="text-[#E60023] font-bold hover:text-[#99001f] text-sm transition-colors">
-              Engwish AI-Practice — Speak with AI
-            </Link>
-          </li>
         </ul>
       </div>
       <div>
