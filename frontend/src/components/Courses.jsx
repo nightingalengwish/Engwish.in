@@ -1,66 +1,66 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Bot, Sparkles, Activity } from "lucide-react";
+import { ArrowUpRight, Bot, Sparkles } from "lucide-react";
 import { COURSES } from "../data/courses";
 
 const AICourseCard = ({ c }) => (
   <Link
     to={c.href}
     data-testid={`course-card-${c.slug}`}
-    className="group relative block rounded-3xl overflow-hidden bg-gradient-to-br from-[#7a0019] via-[#b30026] to-[#FF0033] border border-[#FF0033]/40 shadow-[0_15px_45px_rgba(255,0,51,0.25)] hover:shadow-[0_25px_70px_rgba(255,0,51,0.4)] hover:-translate-y-1 transition-all duration-500 md:col-span-2 h-full"
+    className="group relative block rounded-3xl overflow-hidden border border-[#FF0033]/40 shadow-[0_15px_45px_rgba(255,0,51,0.25)] hover:shadow-[0_25px_70px_rgba(255,0,51,0.4)] hover:-translate-y-1 transition-all duration-500 md:col-span-2 h-full"
   >
-    <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-white/10 blur-3xl" />
-    <div className="absolute -bottom-32 -left-16 w-80 h-80 rounded-full bg-white/8 blur-3xl" />
+    {/* Background image */}
+    <img
+      src="/generated/ai-practice-card-0.png"
+      alt="Student practising spoken English with Engwish AI"
+      className="absolute inset-0 h-full w-full object-cover object-right group-hover:scale-[1.03] transition-transform duration-700"
+    />
+    {/* Left-to-right gradient overlay for text legibility */}
+    <div className="absolute inset-0 bg-gradient-to-r from-[#4a0010]/95 via-[#7a0019]/80 to-[#7a0019]/20" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+    <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-[#FF0033]/20 blur-3xl" />
 
-    <div className="relative grid md:grid-cols-5 gap-6 p-8 sm:p-10 items-center">
+    <div className="relative grid md:grid-cols-5 gap-6 p-8 sm:p-12 items-center min-h-[380px]">
       <div className="md:col-span-3">
-        <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur border border-white/25 px-3 py-1 text-white text-[11px] font-bold tracking-[0.2em] uppercase">
+        <div className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur border border-white/30 px-3 py-1 text-white text-[11px] font-bold tracking-[0.2em] uppercase">
           <Sparkles size={12} /> {c.tag}
         </div>
-        <h3 className="font-heading text-2xl sm:text-3xl font-bold text-white mt-4 leading-tight">
+        <h3 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-white mt-4 leading-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]">
           {c.title}
         </h3>
-        <p className="text-white/85 text-sm sm:text-base leading-relaxed mt-3 max-w-xl">
+        <p className="text-white/90 text-sm sm:text-base leading-relaxed mt-3 max-w-xl drop-shadow">
           {c.short}
         </p>
         <div className="flex flex-wrap gap-2 mt-5">
           {["Live AI Coach", "500+ Scenarios", "Real-Time Scoring", "Unlimited Minutes"].map((x) => (
-            <span key={x} className="rounded-full bg-white/12 border border-white/25 px-3 py-1 text-[11px] font-semibold text-white">
+            <span key={x} className="rounded-full bg-white/15 backdrop-blur-sm border border-white/30 px-3 py-1 text-[11px] font-semibold text-white">
               {x}
             </span>
           ))}
         </div>
-        <div className="inline-flex items-center gap-2 mt-7 text-white font-bold text-sm group-hover:gap-3 transition-all">
+        <div className="inline-flex items-center gap-2 mt-7 rounded-full bg-white text-[#E60023] px-6 py-3 text-sm font-bold shadow-[0_10px_30px_rgba(0,0,0,0.25)] group-hover:scale-105 group-hover:gap-3 transition-all">
           Enter the AI Lab
-          <ArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" size={18} />
+          <ArrowUpRight className="group-hover:rotate-45 transition-transform duration-300" size={16} />
         </div>
       </div>
 
-      <div className="md:col-span-2">
-        <div className="rounded-2xl bg-white/95 backdrop-blur-xl border border-white/40 shadow-[0_20px_50px_rgba(0,0,0,0.25)] p-5">
-          <div className="flex items-center gap-3 pb-3 border-b border-neutral-200">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#FF0033] to-[#99001f] flex items-center justify-center text-white">
-              <Bot size={17} />
-            </div>
-            <div className="flex-1">
-              <p className="font-bold text-xs text-neutral-900">Engwish AI Coach</p>
-              <p className="text-[10px] text-green-500 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" /> Live
-              </p>
-            </div>
-            <Activity size={14} className="text-[#FF0033]" />
+      {/* Live fluency badge, floating on the right over the image */}
+      <div className="md:col-span-2 hidden md:flex md:justify-end">
+        <div className="rounded-2xl bg-white/95 backdrop-blur-xl border border-white/50 shadow-[0_20px_50px_rgba(0,0,0,0.35)] px-5 py-4 flex items-center gap-4">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF0033] to-[#99001f] flex items-center justify-center text-white">
+            <Bot size={18} />
           </div>
-          <div className="space-y-2 py-3">
-            <div className="max-w-[85%] rounded-xl rounded-tl-sm bg-[#FFF7F8] border border-[#FF0033]/10 px-3 py-2 text-[11px] text-neutral-700">
-              You're at a job interview. Tell me about yourself.
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-neutral-500 font-bold flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" /> Live · Fluency Score
             </div>
-            <div className="ml-auto max-w-[85%] rounded-xl rounded-tr-sm bg-gradient-to-r from-[#FF0033] to-[#cc0029] px-3 py-2 text-[11px] text-white">
-              I'm a passionate learner focused on…
-            </div>
+            <div className="text-3xl font-heading font-black text-[#E60023] leading-none mt-1">86</div>
+            <div className="text-[10px] text-green-600 font-bold mt-0.5">▲ +12 this week</div>
           </div>
-          <div className="flex items-center justify-between rounded-xl bg-[#FFF7F8] border border-[#FF0033]/10 px-3 py-2 mt-2">
-            <div className="text-[10px] font-bold text-neutral-500">Fluency Score</div>
-            <div className="text-lg font-heading font-bold text-[#FF0033]">86</div>
+          <div className="flex items-center gap-1 ml-2">
+            {[14, 22, 10, 26, 18, 20, 12].map((h, k) => (
+              <span key={k} className="w-1 rounded-full bg-gradient-to-t from-[#99001f] to-[#FF0033]" style={{ height: h }} />
+            ))}
           </div>
         </div>
       </div>
